@@ -17,9 +17,9 @@ DATADIR = 'data/ta/'
 DATBDIR = 'data/pnl/'
 WORKDIR = 'data/tickers/'
 OUTFDIR = 'data/signal/'
-BASKET = 'tick5'
 BASKET = 'tick1'
 BASKET = 'sp500'
+BASKET = 'tick5'
 SYMBFILE = WORKDIR+BASKET+'_tickers.csv'
 YNN = '_y2y.csv'
 
@@ -38,7 +38,7 @@ def main():
             continue
         df_ta   = pd.read_csv(DATADIR+symb+YNN)
         df_pnl  = pd.read_csv(DATBDIR+symb+'_alldates'+YNN)
-        df_stochastic_sig1  = get_stochastic_sig1(symb,df_ta,df_pnl)
+        df_stochastic_sig1  = get_stochastic_sig1(symb,df_ta)
 
 
 # Get list of tickers for a given basket
@@ -47,10 +47,8 @@ def get_tickers(basket):
     return tickers
 
 # Get technical indicators
-def get_stochastic_sig1(s,df0,df1):
+def get_stochastic_sig1(s,df0):
     outfile = OUTFDIR+s+'_stoch_sig1.csv'+YNN
-    if os.path.exists(outfile):
-        os.remove(outfile)
     sys.stdout = open(outfile,'w')
     df2 = pd.DataFrame()
     # loop
