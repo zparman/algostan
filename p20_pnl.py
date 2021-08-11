@@ -7,7 +7,7 @@ import pandas as pd
 # Global Variables
 DATADIR = 'data/yfinance/'
 OUTFDIR = 'data/pnl/'
-WORKDIR = 'work/'
+WORKDIR = 'data/tickers/'
 BASKET = 'tick5'
 BASKET = 'sp500'
 #BASKET = 'tick5'

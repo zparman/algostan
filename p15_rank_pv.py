@@ -16,7 +16,7 @@ tickers = pd.read_csv(SYMBFILE)
 aapl = pd.read_csv(DATADIR+'AAPL'+YNN)
 
 # Loop through dates
-for i in range(len(aapl)-1, len(aapl)-5 , -1):
+for i in range(len(aapl)-1, len(aapl)-10 , -1):
 #for i in range(0,len(aapl)-1, 1):
     curr_date = (aapl.loc[i, 'Date'])
     print(i, curr_date)

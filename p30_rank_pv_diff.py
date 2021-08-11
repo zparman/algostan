@@ -23,7 +23,7 @@ if os.path.exists(SYMBFIL2):
 # Get last date from aapl
 aapl = pd.read_csv(DATADIR+'AAPL'+YNN)
 # for i in range(len(aapl)-1, len(aapl)-99, -1):
-for i in range(len(aapl)-5, len(aapl)-1, 1):
+for i in range(len(aapl)-5, len(aapl), 1):
     curr_date = (aapl.loc[i, 'Date'])
     prev_date = (aapl.loc[i-1, 'Date'])
     print("=============", i, curr_date, prev_date)

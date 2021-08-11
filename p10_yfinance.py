@@ -7,9 +7,9 @@ import yfinance
 # Global Variables
 BASKET = 'sp500'
 # BASKET = 'tick1'   # one stock
-DATADIR = 'data/yfinance'
+DATADIR = 'data/yfinance/'
 WORKDIR = 'work/'
-WORKPATH = 'work/'
+WORKPATH = 'data/tickers/'
 BASKET = 'sp500'
 SYMBFILE = WORKPATH+BASKET+'_tickers.csv'
 YNN = '_y2y.csv'
