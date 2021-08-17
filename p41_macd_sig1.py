@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # p40
-# Generate signal for stochastic crossover
-# if previous stochastic K-line is < stochastic D-line
+# Generate signal for stoch crossover
+# if previous stoch K-line is < stoch D-line
 #    and current K-line > D-line
 # then 
 #     get Date and Symb
@@ -17,9 +17,9 @@ DATADIR = 'data/ta/'
 DATBDIR = 'data/pnl/'
 WORKDIR = 'data/tickers/'
 OUTFDIR = 'data/signal/'
-BASKET = 'tick1'
+#BASKET = 'tick5'
 BASKET = 'sp500'
-BASKET = 'tick5'
+#BASKET = 'tick1'
 SYMBFILE = WORKDIR+BASKET+'_tickers.csv'
 YNN = '_y2y.csv'
 
@@ -38,7 +38,7 @@ def main():
             continue
         df_ta   = pd.read_csv(DATADIR+symb+YNN)
         df_pnl  = pd.read_csv(DATBDIR+symb+'_alldates'+YNN)
-        df_stochastic_sig1  = get_stochastic_sig1(symb,df_ta)
+        df_macd_sig1  = get_macd_sig1(symb,df_ta)
 
 
 # Get list of tickers for a given basket
@@ -47,23 +47,32 @@ def get_tickers(basket):
     return tickers
 
 # Get technical indicators
-def get_stochastic_sig1(s,df0):
-    outfile = OUTFDIR+s+'_stoch_sig1.csv'+YNN
+def get_macd_sig1(s,df0):
+    outfile = OUTFDIR+s+'_macd_sig1'+YNN
     sys.stdout = open(outfile,'w')
-    df2 = pd.DataFrame()
+    print('Date'+","+'Symb')    # dataframe column header
+    df1 = pd.DataFrame
     # loop
     for i in range(1,len(df0)):
         curr = i
         prev = i -1
-        if  (   (df0.at[prev,'stokk'] <= df0.at[prev,'stokd'])  
-            and (df0.at[curr,'stokk'] >  df0.at[curr,'stokd']) 
-            and (df0.at[prev,'stokk'] <= 20) 
-            and (df0.at[curr,'stokk'] >  20)
+        if  (   (df0.at[prev,'macd'] <= df0.at[prev,'macds'])  
+            and (df0.at[curr,'macd'] >  df0.at[curr,'macds']) 
             ):
                 d = df0.at[curr,'Date']
-                print(s,d)      
+                print(d+","+s)      
     sys.stdout.close()
-    return(df2)
+    sys.stdout = open(outfile,'r')
+
+    #sys.stdout = os.fdopen(1,'w',0)    # reset stdout           
+    #df1 = pd.read_csv(outfile)
+    #print(df1)
+    return(df1)
+
+def get_pnl(symb,date):
+    infile = OUTFDIR+s+'_macd_sig1'+YNN
+    df1 = read_csv(infile)
+    print(infile)
 
 
 

@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 set -e
 WORKPATH='/home/larry/pycode/algostan/'
 cd $WORKPATH
